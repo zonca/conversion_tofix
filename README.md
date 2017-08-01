@@ -1,7 +1,7 @@
 # conversion_tofix
 
 * Clone this repository to Comet
-* Test it
+* Test it running `python test_conversion.py`, does it fail?
 * Identify the commit causing the bug with `git bisect`, see <https://git-scm.com/docs/git-bisect>
 * Create a new branch `fix_bug`
 * Undo it with `git revert` <https://git-scm.com/docs/git-revert>
