@@ -1,3 +1,5 @@
+"""Conversion tools for Python"""
+
 def dollars2cents(dollars):
     """Convert dollars to cents"""
     cents = dollars * 100
