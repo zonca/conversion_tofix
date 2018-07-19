@@ -7,5 +7,5 @@ def dollars2cents(dollars):
 
 def gallons2liters(gallons):
     """Convert gallons to liters"""
-    liters = gallons * 3.785
+    liters = gallons * 3.7854
     return liters
