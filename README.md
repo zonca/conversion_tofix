@@ -28,6 +28,7 @@
 
 * I will create a new commit in my repository
 * Create 2 branches, test `rebase` in one and `merge` in the other
+* After merge, inspect with `git log --graph --oneline`
 
 ## 6) Synchronize upstream with conflicts
 
