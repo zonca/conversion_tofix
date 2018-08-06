@@ -129,11 +129,59 @@ Therefore it is better to merge if you are working on a branch with other collab
 * I will create a new commit in my repository with a conflict
 * Do a rebase and handle conflicts
 
+In this exercise we do the same as before but instead of rebasing on `add_one_commit` we rebase it on `add_conflicting_commit`.
+
+If you look at the last commit of that branch with `git show HEAD` you see that I have modified the exact same line that you modified to fix my bug.
+
+Now when you try to rebase `git` is going to notify that you have a conflict and that you have to handle it yourself.
+If you open the `conversion.py` file you can see that there are special markers that show both versions of that line.
+
+The more straightforward way to fix this is to edit manually the file, remove all the markers and only leave the correct version of that line, then do `git add` to tell `git` that you fixed the conflict and then continue rebasing with `git rebase --continue`
+
+A quicker way to fix this is to checkout your version of the file if you already know that yours is correct:
+
+    git checkout --ours conversion.py
+    git add conversion.py
+    git rebase --continue
+    
+Sometimes, as in this case, you are basically not using anything from the commit in the base branch, so `git` can warn you that it is better to just skip it:
+
+```
+git rebase --continue
+Applying: This change will create a conflict during rebase
+No changes - did you forget to use 'git add'?
+
+When you have resolved this problem run "git rebase --continue".
+If you would prefer to skip this patch, instead run "git rebase --skip".
+To restore the original branch and stop rebasing run "git rebase --abort".
+```
+
+In this case run `git rebase --skip`.
+
 ## 7) Erase commit
 
 * Use `git rebase` to completely wipe the commit from history
 * Try to push
 
+Another option is, instead of reverting a commit, to directly wipe it from history.
+This is useful for example if you committed sensitive data by mistake.
+
+In this case you can do:
+
+    git checkout master
+    git checkout fix_bug_rewrite_history
+    git rebase -i HEAD~10
+    
+You will get a listing of the last 10 commits, you can identify the buggy commit named "Remove extra digits" and delete its line.
+When you save, `git` is going to rewrite history removing that commit completely.
+
+Read all the help inside `git rebase -i`, it is convenient that you can also join commits together or reorder commits. This is often used if you want to cleanup history before submitting a Pull Request to make it easier for the upstream maintainers to review.
+
+
 ## 8) Hard reset
 
-* Wipe the last commit with `git reset --hard`
+Wipe the last commit with `git reset --hard`, do:
+
+    git reset --hard HEAD~1
+    
+we saw also an example before where we can reset a branch to the status of another branch with this command.
