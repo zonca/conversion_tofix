@@ -6,11 +6,11 @@
 * Test it running `python test_conversion.py`, does it fail?
 * Checkout the code version just before the last commit, does it still fail? How do you go back to the last commit?
 
-## 2) Bisect
+## 2) bisect
 
 * Identify the commit causing the bug with `git bisect`, see <https://git-scm.com/docs/git-bisect>
 
-## 3) Fix in branch
+## 3) fix in branch
 
 * Create a new branch `fix_bug`
 * Undo it with `git revert` <https://git-scm.com/docs/git-revert>
