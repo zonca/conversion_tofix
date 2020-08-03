@@ -21,6 +21,22 @@
 * `cd` into the folder, test it running `python test_conversion.py`, it fails with `AssertionError`, one of the test fails
 * Identify the commit causing the bug with `git bisect`, see <https://git-scm.com/docs/git-bisect>
 
+## Reset
+
+If you ever get lost and have an incosistent status of the repository as you work through the example,
+you can wipe all local changes and go back to the initial state of `master`, first make sure
+you are on the `master` branch:
+
+    git checkout master
+
+then reset its status to its original status:
+   
+    git reset --hard origin/master
+    
+instead if you are past section 4 and have renamed `origin` to `upstream`:
+
+    git reset --hard upstream/master
+
 ## 2) Bisect
 
     git bisect start
@@ -63,7 +79,7 @@ after 3-4 steps it will have identified the wrong commit which is:
 
 * Try to push it back to the original repository with `git push origin fix_bug`, does it work? No, you don't have permissions to do that.
 * Fork the repository under your Github account through the Github website, use the Fork button
-* Rename the `origin` remote to `upstream` <https://help.github.com/articles/renaming-a-remote/>
+* Rename the `origin` remote to `upstream`: `git remote rename origin upstream` <https://help.github.com/articles/renaming-a-remote/>
 * Add your **fork** of the repository as a remote to the repository on Comet
 
         git remote add origin https://github.com/yourusername/conversion_tofix
