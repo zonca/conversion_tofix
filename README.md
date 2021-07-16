@@ -18,6 +18,14 @@
 ## 4) Create Pull Request
 
 * Try to push it back to the original repository with `git push origin fix_bug`, does it work?
+
+### Using the Github cli
+
+* Look at `gh` docs at <https://cli.github.com/>
+* Create fork, push the branch to fork and create a PR all from the command line
+
+### Using the Github website
+
 * Fork the repository under your Github account through the Github website
 * Rename the `origin` remote to `upstream` <https://help.github.com/articles/renaming-a-remote/>
 * Add your **fork** of the repository as a remote to the repository on Comet
@@ -43,3 +51,7 @@
 ## 8) Hard reset
 
 * Wipe the last commit with `git reset --hard`
+
+## 9) Github actions
+
+* Setup a Github action to test the code on the `main` branch of your fork
