@@ -24,18 +24,18 @@
 ## Reset
 
 If you ever get lost and have an incosistent status of the repository as you work through the example,
-you can wipe all local changes and go back to the initial state of `master`, first make sure
-you are on the `master` branch:
+you can wipe all local changes and go back to the initial state of `main`, first make sure
+you are on the `main` branch:
 
-    git checkout master
+    git checkout main
 
 then reset its status to its original status:
    
-    git reset --hard origin/master
+    git reset --hard origin/main
     
 instead if you are past section 4 and have renamed `origin` to `upstream`:
 
-    git reset --hard upstream/master
+    git reset --hard upstream/main
 
 ## 2) Bisect
 
@@ -73,7 +73,7 @@ after 3-4 steps it will have identified the wrong commit which is:
 
         git checkout -b fix_bug
         
-* Undo it with `git revert` <https://git-scm.com/docs/git-revert>, it is currently just a copy of master, now revert the bad commit with `git revert HASH` this creates a new commit at the end of history that makes changes opposite to the ones in the bad commit. This is **NOT** modifying the past history. It is equivalent to just making the change yourself in `conversion.py` and add/commit the result.
+* Undo it with `git revert` <https://git-scm.com/docs/git-revert>, it is currently just a copy of main, now revert the bad commit with `git revert HASH` this creates a new commit at the end of history that makes changes opposite to the ones in the bad commit. This is **NOT** modifying the past history. It is equivalent to just making the change yourself in `conversion.py` and add/commit the result.
 
 ## 4) Create Pull Request
 
@@ -88,7 +88,7 @@ after 3-4 steps it will have identified the wrong commit which is:
 
         git push origin fix_bug
         
-* Go to <https://github.com/zonca/conversion_tofix>, create a Pull Request! Click on New Pull Request and choose to Compare `zonca:master` branch to `yourusername:fix_bug` branch.
+* Go to <https://github.com/zonca/conversion_tofix>, create a Pull Request! Click on New Pull Request and choose to Compare `zonca:main` branch to `yourusername:fix_bug` branch.
 
 ## 5) Synchronize upstream
 
@@ -119,7 +119,7 @@ Now test the 2 methods you can use to synchronize with upstream changes.
     
 **After this, inspect with `git log --graph --oneline`**
 
-You see that `rebase` creates a cleaner history because your last commit fixing the bug is applied on top of the last  version from master.
+You see that `rebase` creates a cleaner history because your last commit fixing the bug is applied on top of the last  version from main.
 The issue is that you are now rewriting history, this is not a problem in the current case because you are the only one working on this branch.
 So to update the remote branch and have a cleaner pull request you do:
 
@@ -130,13 +130,13 @@ So:
 
     git reset --hard fix_bug_rebase
     
-Now our `fix_bug` is rebased on master and we can push it but we need to force it with `-f` because `git` doesn't allow us to rewrite history otherwise.
+Now our `fix_bug` is rebased on main and we can push it but we need to force it with `-f` because `git` doesn't allow us to rewrite history otherwise.
 
     git push -f origin fix_bug
     
 Now our pull request will be update to this status.
 
-Instead if we do a merge, then we see that there is a merge commit of `master` into our `fix_bug_merge`, so this is not very clean if we make a pull request we will have this extra merge commit that is not harmful per se but that makes history more complicated.
+Instead if we do a merge, then we see that there is a merge commit of `main` into our `fix_bug_merge`, so this is not very clean if we make a pull request we will have this extra merge commit that is not harmful per se but that makes history more complicated.
 However this does have the advantage that you are **not** rewriting history because you are adding extra commits on top of the previous state of `fix_bug`.
 Therefore it is better to merge if you are working on a branch with other collaborators and you don't want to rewrite history and make it very difficult for them to merge any change that they have been working on.
 
@@ -184,7 +184,7 @@ This is useful for example if you committed sensitive data by mistake.
 
 In this case you can do:
 
-    git checkout master
+    git checkout main
     git checkout fix_bug_rewrite_history
     git rebase -i HEAD~10
     
