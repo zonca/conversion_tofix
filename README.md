@@ -11,12 +11,25 @@
 ## 0) Preparation
 
 * Clone this repository to your home folder
+
+## 0b) How to reset the status of the repository
+
+If you ever get lost and have an incosistent status of the repository as you work through the example, you can wipe all local changes both to `main` and to `fix_bug` and go back to the initial state of `main` and restart from there:
+
+    git checkout main
+    git reset --hard origin/original_main
+    git checkout fix_bug
+    git reset --hard origin/original_main
+
+## 1) Make a test
+
 * Test it running `python test_conversion.py`, does it fail?
 * Checkout the code version just before the last commit, does it still fail? How do you go back to the last commit?
 
-## 2) Bisect
+## 2) Identify the commit which caused the bug
 
 * Identify the commit causing the bug with `git bisect`, see <https://git-scm.com/docs/git-bisect>
+* `bisect` is rarely useful, let's skip it, it is in the solution if you are interested, now assume we know that the problematic commit is `363a`
 
 ## 3) Fix in branch
 
