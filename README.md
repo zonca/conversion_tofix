@@ -1,6 +1,14 @@
-# conversion_tofix
+# Hands-on exercise for Advanced Git/Github training
 
-## 1) Make a test
+## Notes
+
+* Feel free to leave anytime
+* It is hands-on, try to do exercise, then we will do together
+* All the step-by-step solution will be available, no need to take notes
+* If you get lost, try to reset the repository and start again
+* Otherwise, feel free to just follow along, you can do on your own later
+
+## 0) Preparation
 
 * Clone this repository to your home folder
 * Test it running `python test_conversion.py`, does it fail?
