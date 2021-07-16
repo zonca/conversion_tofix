@@ -2,7 +2,7 @@
 
 ## 1) Make a test
 
-* Clone this repository to Comet
+* Clone this repository to your home folder
 * Test it running `python test_conversion.py`, does it fail?
 * Checkout the code version just before the last commit, does it still fail? How do you go back to the last commit?
 
