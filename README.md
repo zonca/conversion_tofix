@@ -55,3 +55,7 @@
 ## 9) Github actions
 
 * Setup a Github action to test the code on the `main` branch of your fork
+
+## 10) Create gist with `gh`
+
+* Publish `conversion.py` as a Gist using `gh`
