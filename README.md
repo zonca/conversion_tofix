@@ -1,41 +1,13 @@
-# conversion_tofix
-
-* Clone this repository to Comet
-* Test it running `python test_conversion.py`, does it fail?
-* Identify the commit causing the bug with `git bisect`, see <https://git-scm.com/docs/git-bisect>
-* Create a new branch `fix_bug`
-* Undo it with `git revert` <https://git-scm.com/docs/git-revert>
-* Try to push it back to the original repository with `git push origin fix_bug`, does it work?
-* Fork the repository under your Github account through the Github website
-* Rename the `origin` remote to `upstream` <https://help.github.com/articles/renaming-a-remote/>
-* Add your **fork** of the repository as a remote to the repository on Comet
-* `git push` your `fix_bug` to your repository
-* Go to <https://github.com/zonca/conversion_tofix>, create a Pull Request!
+# Exercise solution
 
 ## Detailed walkthrough
 
-* Clone the repository to comet with:
+* Clone the repository to your home with:
 
-        git clone https://github.com/zonca/conversion_tofix
+        gh repo clone zonca/conversion_tofix
 
 * `cd` into the folder, test it running `python test_conversion.py`, it fails with `AssertionError`, one of the test fails
 * Identify the commit causing the bug with `git bisect`, see <https://git-scm.com/docs/git-bisect>
-
-## Reset
-
-If you ever get lost and have an incosistent status of the repository as you work through the example,
-you can wipe all local changes and go back to the initial state of `main`, first make sure
-you are on the `main` branch:
-
-    git checkout main
-
-then reset its status to its original status:
-   
-    git reset --hard origin/main
-    
-instead if you are past section 4 and have renamed `origin` to `upstream`:
-
-    git reset --hard upstream/main
 
 ## 2) Bisect
 
@@ -78,6 +50,13 @@ after 3-4 steps it will have identified the wrong commit which is:
 ## 4) Create Pull Request
 
 * Try to push it back to the original repository with `git push origin fix_bug`, does it work? No, you don't have permissions to do that.
+
+### Using `gh`
+
+`gh pr create` and follow prompts
+
+### Otherwise
+
 * Fork the repository under your Github account through the Github website, use the Fork button
 * Rename the `origin` remote to `upstream`: `git remote rename origin upstream` <https://help.github.com/articles/renaming-a-remote/>
 * Add your **fork** of the repository as a remote to the repository on Comet
@@ -94,12 +73,13 @@ after 3-4 steps it will have identified the wrong commit which is:
 
 **I created a new commit in my repository**
 
-you can reference my `add_one_commit` branch on Github, https://github.com/zonca/conversion_tofix/tree/add_one_commit
+you can reference my `add_one_commit` branch on Github, https://github.com/zonca/conversion_tofix/tree/add_one_commit and pretend it is `main`,
+this is not necessary during the tutorial because in that case I actually merge `add_one_commit` into `main`.
 
 by checking it out locally
 
-    git fetch upstream
-    git checkout -b add_one_commit upstream/add_one_commit
+    git fetch origin
+    git checkout -b add_one_commit origin/add_one_commit
     
 **Create 2 branches, test `rebase` in one and `merge` in the other**
 
@@ -117,7 +97,12 @@ Now test the 2 methods you can use to synchronize with upstream changes.
     git checkout fix_bug_merge
     git merge add_one_commit
     
-**After this, inspect with `git log --graph --oneline`**
+**After this, inspect with:**
+
+```
+git log fix_bug_rebase --graph --oneline -5
+git log fix_bug_merge --graph --oneline -5
+```
 
 You see that `rebase` creates a cleaner history because your last commit fixing the bug is applied on top of the last  version from main.
 The issue is that you are now rewriting history, this is not a problem in the current case because you are the only one working on this branch.
@@ -201,3 +186,52 @@ Wipe the last commit with `git reset --hard`, do:
     git reset --hard HEAD~1
     
 we saw also an example before where we can reset a branch to the status of another branch with this command.
+
+## 9) Github actions
+
+* On the Github website, on your fork
+* Open the Github Actions tab
+* Setup your own workflow
+* Look for Python
+* Run `python test_conversion.py`
+
+At the end you should have:
+
+```yaml
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2.2.2
+    
+      - name: Run test
+        run: python test_conversion.py
+```
+
+## 10) Create gist
+
+    gh gist create conversion.py --public
