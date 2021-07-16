@@ -10,7 +10,11 @@
 
 ## 0) Preparation
 
-* Clone this repository to your home folder
+* `gh auth login`, protocol SSH, generate key with no password, authenticate via browser
+* Clone this repository to your home folder with `gh`
+* `git config --global user.name "FirstName LastName"`
+* `git config --global user.email "your_github@email.com"`
+
 
 ## 0b) How to reset the status of the repository
 
@@ -18,6 +22,9 @@ If you ever get lost and have an incosistent status of the repository as you wor
 
     git checkout main
     git reset --hard origin/original_main
+
+After you created the `fix_bug` branch:
+
     git checkout fix_bug
     git reset --hard origin/original_main
 
@@ -29,7 +36,7 @@ If you ever get lost and have an incosistent status of the repository as you wor
 ## 2) Identify the commit which caused the bug
 
 * Identify the commit causing the bug with `git bisect`, see <https://git-scm.com/docs/git-bisect>
-* `bisect` is rarely useful, let's skip it, it is in the solution if you are interested, now assume we know that the problematic commit is `363a`
+* `bisect` is rarely useful in practice, let's skip it, it is in the solution if you are interested, now assume we know that the problematic commit is `363a`
 
 ## 3) Fix in branch
 
@@ -48,9 +55,8 @@ If you ever get lost and have an incosistent status of the repository as you wor
 ### Using the Github website
 
 * Fork the repository under your Github account through the Github website
-* Rename the `origin` remote to `upstream` <https://help.github.com/articles/renaming-a-remote/>
-* Add your **fork** of the repository as a remote to the repository on Comet
-* `git push` your `fix_bug` to your repository
+* Add your **fork** of the repository as a remote named `fork` to the repository on Expanse
+* `git push fork` your `fix_bug` to your repository
 * Go to <https://github.com/zonca/conversion_tofix>, create a Pull Request!
 
 ## 5) Synchronize upstream
