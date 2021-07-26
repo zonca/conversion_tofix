@@ -12,7 +12,7 @@
 
 * `module load gh` on Expanse
 * `gh auth login`, protocol SSH, generate key with no password, authenticate via browser
-* Clone this repository to your home folder with `gh`
+* Clone this repository to your home folder with `gh repo clone zonca/conversion_tofix`
 * `git config --global user.name "FirstName LastName"`
 * `git config --global user.email "your_github@email.com"`
 
