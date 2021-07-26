@@ -10,6 +10,7 @@
 
 ## 0) Preparation
 
+* `module load gh` on Expanse
 * `gh auth login`, protocol SSH, generate key with no password, authenticate via browser
 * Clone this repository to your home folder with `gh`
 * `git config --global user.name "FirstName LastName"`
