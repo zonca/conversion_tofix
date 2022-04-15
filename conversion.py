@@ -7,5 +7,11 @@ def dollars2cents(dollars):
 
 def gallons2liters(gallons):
     """Convert gallons to liters"""
-    liters = gallons * 3.785
+    liters = gallons * 3.78541
+>>>>>>> Revert "remove extra digits"
     return liters
+
+def pounds2kg(pounds):
+    """Convert pounds to Kg"""
+    kilograms = pounds / 2.2
+    return kilograms
